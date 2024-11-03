@@ -1,7 +1,7 @@
-# opt-install-scripts
+# local-install-scripts
 
 This is a collection of scripts, used to install optional tools,
-required during builds.
+required during pre-xPack builds.
 
 The strategy is to allow separate updates for separate builds,
 otherwise updating the tools for one build may affect other builds.
@@ -22,12 +22,12 @@ PATH can be defined.
 ## Download
 
 These scripts can be downloaded from GitHub
-[ilg-ul/opt-install-scripts](https://github.com/ilg-ul/opt-install-scripts).
+[ilg-ul/local-install-scripts](https://github.com/ilg-ul/local-install-scripts).
 
 ```sh
-rm -rf "${HOME}/Downloads/opt-install-scripts.git"; \
-git clone https://github.com/ilg-ul/opt-install-scripts \
-    "${HOME}/Downloads/opt-install-scripts.git"
+rm -rf "${HOME}/Downloads/local-instal-scripts.git"; \
+git clone https://github.com/ilg-ul/local-instal-scripts \
+    "${HOME}/Downloads/local-instal-scripts.git"
 ```
 
 ## homebrew
@@ -37,7 +37,7 @@ This Homebrew instance provides general purpose tools, like minicom.
 To run the install script:
 
 ```sh
-caffeinate bash "${HOME}/Downloads/opt-install-scripts.git/install-homebrew.sh"
+caffeinate bash "${HOME}/Downloads/local-instal-scripts.git/install-homebrew.sh"
 ```
 
 The alias to add these tools to the PATH is `ahb`.
@@ -54,7 +54,7 @@ static sites locally.
 To run the install script:
 
 ```sh
-caffeinate bash "${HOME}/Downloads/opt-install-scripts.git/install-homebrew-jekyll.sh"
+caffeinate bash "${HOME}/Downloads/local-instal-scripts.git/install-homebrew-jekyll.sh"
 ```
 
 The alias to add these tools to the PATH is `ajkl`.
@@ -62,35 +62,6 @@ The alias to add these tools to the PATH is `ajkl`.
 ```sh
 alias ajkl='export PATH=${HOME}/.local/homebrew/jekyll/bin:${PATH}'
 ```
-
-## texlive
-
-This is a local instance of [TeX Live](https://tug.org/texlive/), used to build the OpenOCD & QEMU manuals.
-
-It generally includes the same packages as the MacTex distribution, and is **very large** (> 4.5 GB).
-
-To run the install script:
-
-```sh
-ahb
-
-caffeinate bash "${HOME}/Downloads/opt-install-scripts.git/install-texlive.sh"
-chmod -R a-w "${HOME}/.local/texlive"
-```
-
-The alias to add these tools to the PATH is `atl`.
-
-```sh
-alias atl='export PATH=${HOME}/.local/texlive/bin/x86_64-darwin:${PATH}'
-```
-
-Notes:
-
-- homebrew blacklisted TeX, (_"Installing TeX from source is weird and gross"_), but, apart from size and install time, there are no other problems
-- however, due to its size, it is better to keep TeX separate from the Homebrew instances, which can now be reinstalled more easily
-- the current script installs TeX Live 2016, the medium scheme (1015 packets)
-- the GCC manuals fail with `-scheme basic` (! I can't find file `texinfo.tex'.)
-- the OpenOCD manual passes with `-scheme basic`
 
 ## maven
 
@@ -101,7 +72,7 @@ The Apache Maven download page is:
 To install maven in a custom folder in `$HOME/.local`, use:
 
 ```sh
-caffeinate bash "${HOME}/Downloads/opt-install-scripts.git/install-maven.sh"
+caffeinate bash "${HOME}/Downloads/local-instal-scripts.git/install-maven.sh"
 ```
 
 The alias to add these tools to the PATH is `amaven`.
